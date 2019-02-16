@@ -2,6 +2,8 @@ package config
 
 //WEB配置
 const (
+	//调试模式
+	WEB_DEBUG = true
 	//开启http
 	HTTP_OPEN = true
 	//监听地址

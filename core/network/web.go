@@ -8,7 +8,13 @@ import (
 var Wroutes *gin.Engine
 
 func init() {
-	Wroutes = gin.Default()
+	if config.WEB_DEBUG {
+		gin.SetMode(gin.DebugMode)
+		Wroutes = gin.Default()
+	}else{
+		gin.SetMode(gin.ReleaseMode)
+		Wroutes = gin.New()
+	}
 }
 
 func WRun() {
@@ -19,4 +25,3 @@ func WRun() {
 		go Wroutes.Run(config.HTTP_LISTEN_ADDRESS)
 	}
 }
-

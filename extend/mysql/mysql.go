@@ -25,5 +25,7 @@ func GetMysqlDb() (*gorm.DB, error) {
 	Db.DB().SetMaxOpenConns(config.MYSQL_SET_MAX_OPEN_CONNS)
 	//最大闲置链接
 	Db.DB().SetMaxIdleConns(config.MYSQL_SET_MAX_IDLE_CONNS)
+	//表名后缀
+	Db.SingularTable(config.MYSQL_TABLE_SINGULAR)
 	return Db, nil
 }

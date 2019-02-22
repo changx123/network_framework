@@ -1,8 +1,8 @@
 package base
 
 import (
-	"network_framework/core/network"
-	"network_framework/app/routes"
+	"blog/core/network"
+	"blog/app/routes"
 )
 
 func Run()  {

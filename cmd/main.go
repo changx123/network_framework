@@ -1,21 +1,26 @@
 package main
 
 import (
-	"fmt"
-	"network_framework/app/base"
-	"os"
-	"strconv"
+	"blog/app/base"
+	"blog/config"
+	"blog/core/network"
+	"runtime"
 )
 
+func init() {
+	network.UpdatePidFile()
+}
+
 func main() {
+	if config.MAX_CPUS > 0 {
+		runtime.GOMAXPROCS(config.MAX_CPUS)
+	}else{
+		runtime.GOMAXPROCS(runtime.NumCPU())
+	}
 	t := make(chan int,1)
 	base.Run()
-	f,err := os.Create("./process.pid")
-	if err !=nil {
-		fmt.Println(err.Error())
-	} else {
-		f.Write([]byte(strconv.Itoa(os.Getpid())))
+	if !config.WEB_DEBUG && config.HTTP_HOT_UPDATE {
+		network.SingalHandler()
 	}
-	f.Close()
 	<- t
 }

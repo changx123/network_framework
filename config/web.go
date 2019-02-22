@@ -7,7 +7,11 @@ const (
 	//开启http
 	HTTP_OPEN = true
 	//监听地址
-	HTTP_LISTEN_ADDRESS = "0.0.0.0:80"
+	HTTP_LISTEN_ADDRESS = "0.0.0.0:1234"
+	//启用http 热更新
+	HTTP_HOT_UPDATE = true
+	//热更新处理剩余连接超时时间
+	HTTP_HOT_UPDATE_TIMEOUT = 20
 	//开启https
 	HTTPS_OPEN = false
 	//监听地址

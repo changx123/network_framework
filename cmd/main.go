@@ -1,9 +1,9 @@
 package main
 
 import (
-	"blog/app/base"
-	"blog/config"
-	"blog/core/network"
+	"blog_admin/app/base"
+	"blog_admin/config"
+	"blog_admin/core/network"
 	"runtime"
 )
 

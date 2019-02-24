@@ -1,7 +1,7 @@
 package network
 
 import (
-	"blog/core/network/websocket-route"
+	"blog_admin/core/network/websocket-route"
 	"github.com/gin-gonic/gin"
 	"fmt"
 )

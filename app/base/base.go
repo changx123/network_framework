@@ -1,8 +1,8 @@
 package base
 
 import (
-	"blog/core/network"
-	"blog/app/routes"
+	"blog_admin/core/network"
+	"blog_admin/app/routes"
 )
 
 func Run()  {

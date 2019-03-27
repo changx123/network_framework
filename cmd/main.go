@@ -1,9 +1,9 @@
 package main
 
 import (
-	"blog/app/base"
-	"blog/config"
-	"blog/core/network"
+	"network_framework/app/base"
+	"network_framework/config"
+	"network_framework/core/network"
 	"runtime"
 )
 

@@ -1,7 +1,7 @@
 package network
 
 import (
-	"blog/config"
+	"network_framework/config"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"

@@ -1,12 +1,12 @@
 package mysql
 
 import (
+	"blog/config"
 	_ "github.com/go-sql-driver/mysql"
-	"network_framework/config"
 	"github.com/jinzhu/gorm"
 )
 
-var Db *gorm.DB
+var mysqlDb *gorm.DB
 
 func init() {
 	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
@@ -16,16 +16,28 @@ func init() {
 
 //获取数据库
 func GetMysqlDb() (*gorm.DB, error) {
-	var err error
-	Db, err = gorm.Open("mysql", config.MYSQL_DATA_SOURCE_NAME)
+	if mysqlDb == nil{
+		var err error
+		db, err := connect()
+		if err != nil {
+			return db, err
+		}
+		mysqlDb = db
+	}
+	return mysqlDb, nil
+}
+
+func connect() (*gorm.DB, error) {
+	db, err := gorm.Open("mysql", config.MYSQL_DATA_SOURCE_NAME)
 	if err != nil {
 		return nil, err
 	}
 	//最大链接数
-	Db.DB().SetMaxOpenConns(config.MYSQL_SET_MAX_OPEN_CONNS)
+	db.DB().SetMaxOpenConns(config.MYSQL_SET_MAX_OPEN_CONNS)
 	//最大闲置链接
-	Db.DB().SetMaxIdleConns(config.MYSQL_SET_MAX_IDLE_CONNS)
+	db.DB().SetMaxIdleConns(config.MYSQL_SET_MAX_IDLE_CONNS)
+	db.DB().Ping()
 	//表名后缀
-	Db.SingularTable(config.MYSQL_TABLE_SINGULAR)
-	return Db, nil
+	db.SingularTable(config.MYSQL_TABLE_SINGULAR)
+	return db, nil
 }
